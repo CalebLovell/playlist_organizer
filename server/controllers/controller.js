@@ -70,26 +70,127 @@ let newPlaylist = [ // Today's Top Hits Spotify List
         time: '3:10',
     },
 ];
-let playlistOne = [];
-let playlistTwo = [];
-let playlistThree = [];
-let playlistFour = [];
+let playlistOne = [
+    {
+        id: 1,
+        title: 'Example Song One aaaaa',
+        artist: 'Example Artist One aaaaa',
+        album: 'Example Album One aaaaa',
+        time: '3:01',
+    },
+    {
+        id: 2,
+        title: "Example Song Two aaaaa",
+        artist: 'Example Artist Two aaaaa',
+        album: 'Example Album Two aaaaa',
+        time: '2:58',
+    },
+    {
+        id: 3,
+        title: "Example Song Three aaaaa",
+        artist: "Example Artist Three aaaaa",
+        album: "Example Album Three aaaaa",
+        time: '2:38',
+    },
+];
+let playlistTwo = [
+    {
+        id: 1,
+        title: 'Example Song One bbbbb',
+        artist: 'Example Artist One bbbbb',
+        album: 'Example Album One bbbbb',
+        time: '3:01',
+    },
+    {
+        id: 2,
+        title: "Example Song Two bbbbb",
+        artist: 'Example Artist Two bbbbb',
+        album: 'Example Album Two bbbbb',
+        time: '2:58',
+    },
+    {
+        id: 3,
+        title: "Example Song Three bbbbb",
+        artist: "Example Artist Three bbbbb",
+        album: "Example Album Three bbbbb",
+        time: '2:38',
+    },
+];
+let playlistThree = [
+    {
+        id: 1,
+        title: 'Example Song One ccccc',
+        artist: 'Example Artist One ccccc',
+        album: 'Example Album One ccccc',
+        time: '3:01',
+    },
+    {
+        id: 2,
+        title: "Example Song Two ccccc",
+        artist: 'Example Artist Two ccccc',
+        album: 'Example Album Two ccccc',
+        time: '2:58',
+    },
+    {
+        id: 3,
+        title: "Example Song Three ccccc",
+        artist: "Example Artist Three ccccc",
+        album: "Example Album Three ccccc",
+        time: '2:38',
+    },
+];
+let playlistFour = [
+    {
+        id: 1,
+        title: 'Example Song One ddddd',
+        artist: 'Example Artist One ddddd',
+        album: 'Example Album One ddddd',
+        time: '3:01',
+    },
+    {
+        id: 2,
+        title: "Example Song Two ddddd",
+        artist: 'Example Artist Two ddddd',
+        album: 'Example Album Two ddddd',
+        time: '2:58',
+    },
+    {
+        id: 3,
+        title: "Example Song Three ddddd",
+        artist: "Example Artist Three ddddd",
+        album: "Example Album Three ddddd",
+        time: '2:38',
+    },
+];
+
+let playlists = {
+    playlistOne,
+    playlistTwo,
+    playlistThree,
+    playlistFour
+}
+
+
 
 module.exports = {
     getNewSong: (req, res) => {
         let { id } = req.params
-        res.send(newPlaylist[id-1])
+        res.send(newPlaylist[id - 1])
     },
     getNewPlaylist: (req, res) => {
         res.send(newPlaylist)
     },
+    getOldPlaylist: (req, res) => {
+        let { playlistName } = req.params;
+        res.send(playlists[playlistName]);
+    },
     // create: (req, res) => {
-        
+
     // },
     // update: (req, res) => {
-        
+
     // },
     // delete: (req, res) => {
-        
+
     // },
 };

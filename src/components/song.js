@@ -8,11 +8,9 @@ class Song extends Component {
         this.state = {
             title: '',
             artist: '',
+            album: '',
             time: '',
         };
-    };
-
-    componentDidMount() {
     };
 
     render() {
@@ -22,6 +20,7 @@ class Song extends Component {
                 this.setState({
                     title: res.data.title,
                     artist: res.data.artist,
+                    album: res.data.album,
                     time: res.data.time,
                 })
             })
@@ -32,7 +31,7 @@ class Song extends Component {
         return (
             <div className="song">
                 <div className="song-text-div">
-                    <h2>{this.state.title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.artist}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.time}</h2>
+                    <h2>{this.state.title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.artist}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.album}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.time}</h2>
                 </div>
             </div>
         );

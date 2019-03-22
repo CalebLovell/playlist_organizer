@@ -5,7 +5,8 @@ const playlistController = require ('./controllers/controller');
 app.use(express.json());
 
 app.get('/api/playlist/:id', playlistController.getNewSong);
-app.get('/api/playlist/', playlistController.getNewPlaylist);
+app.get('/api/newPlaylist/', playlistController.getNewPlaylist);
+app.get('/api/oldPlaylist/:playlistName', playlistController.getOldPlaylist);
 // app.post('api/playlist', playlistController.post);
 // app.put('api/playlist', playlistController.put);
 // app.delete('api/playlist', playlistController.delete);
