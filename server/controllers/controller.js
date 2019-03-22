@@ -1,4 +1,4 @@
-let newPlaylist = [ //Today's Top Hits Spotify List
+let newPlaylist = [ // Today's Top Hits Spotify List
     {
         id: 1,
         title: 'Sucker',
@@ -75,17 +75,21 @@ let playlistTwo = [];
 let playlistThree = [];
 let playlistFour = [];
 
-modules.exports = {
-    get: (req, res) => {
-
+module.exports = {
+    getNewSong: (req, res) => {
+        let { id } = req.params
+        res.send(newPlaylist[id-1])
     },
-    create: (req, res) => {
+    getNewPlaylist: (req, res) => {
+        res.send(newPlaylist)
+    },
+    // create: (req, res) => {
         
-    },
-    update: (req, res) => {
+    // },
+    // update: (req, res) => {
         
-    },
-    delete: (req, res) => {
+    // },
+    // delete: (req, res) => {
         
-    },
+    // },
 };
