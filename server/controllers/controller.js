@@ -1,98 +1,112 @@
+let id = 1;
 let newPlaylist = [ // Today's Top Hits Spotify List
     {
-        id: 1,
+        id: id++,
         title: 'Sucker',
         artist: 'Jonas Brothers',
         album: 'Sucker',
         time: '3:01',
     },
     {
-        id: 2,
+        id: id++,
         title: "Don't Call Me Up",
         artist: 'Mabel',
         album: 'Ivy To Roses',
         time: '2:58',
     },
     {
-        id: 3,
+        id: id++,
         title: "I Can't Get Enough",
         artist: "benny blanco",
         album: "I Can't Get Enough",
         time: '2:38',
     },
     {
-        id: 4,
+        id: id++,
         title: 'My Bad',
         artist: 'Khalid',
         album: 'My Bad',
         time: '2:46',
     },
     {
-        id: 5,
+        id: id++,
         title: 'Here With Me',
         artist: 'Marshmello',
         album: 'Here With Me',
         time: '2:36',
     },
     {
-        id: 6,
+        id: id++,
         title: 'Con Calma',
         artist: 'Daddy Yankee',
         album: 'Con Calma',
         time: '3:13',
     },
     {
-        id: 7,
+        id: id++,
         title: 'The Bones',
         artist: 'Marren Morris',
         album: 'GIRL',
         time: '3:17',
     },
     {
-        id: 8,
+        id: id++,
         title: 'Last Hurrah',
         artist: 'Bebe Rexha',
         album: 'Last Hurrah',
         time: '2:30',
     },
     {
-        id: 9,
+        id: id++,
         title: 'R.I.P.',
         artist: 'Sofia Reyes',
         album: 'R.I.P.',
         time: '3:07',
     },
     {
-        id: 10,
+        id: id++,
         title: "break up with your girlfriend, i'm bored",
         artist: 'Ariana Grande',
         album: 'thank u, next',
         time: '3:10',
     },
+    {
+        id: id++,
+        title: "Old Town Road",
+        artist: 'Lil Nas X',
+        album: 'Old Town Road',
+        time: '1:53',
+    },
+    {
+        id: id++,
+        title: "No New Friends",
+        artist: 'Sia',
+        album: 'No New Friends',
+        time: '2:56',
+    },
+    {
+        id: id++,
+        title: "So Am I",
+        artist: 'Ava Max',
+        album: 'So Am I',
+        time: '3:04',
+    },
+    {
+        id: id++,
+        title: "Let Me Down Slowly",
+        artist: 'Alec Benjamin',
+        album: 'Narrated For You',
+        time: '2:49',
+    },
+    {
+        id: id++,
+        title: "Talk",
+        artist: 'Khalid',
+        album: 'Talk',
+        time: '3:17',
+    },
 ];
-let playlistOne = [
-    {
-        id: 1,
-        title: 'Example Song One aaaaa',
-        artist: 'Example Artist One aaaaa',
-        album: 'Example Album One aaaaa',
-        time: '3:01',
-    },
-    {
-        id: 2,
-        title: "Example Song Two aaaaa",
-        artist: 'Example Artist Two aaaaa',
-        album: 'Example Album Two aaaaa',
-        time: '2:58',
-    },
-    {
-        id: 3,
-        title: "Example Song Three aaaaa",
-        artist: "Example Artist Three aaaaa",
-        album: "Example Album Three aaaaa",
-        time: '2:38',
-    },
-];
+let playlistOne = [];
 let playlistTwo = [
     {
         id: 1,
@@ -175,7 +189,7 @@ let playlists = {
 module.exports = {
     getNewSong: (req, res) => {
         let { id } = req.params
-        res.send(newPlaylist[id - 1])
+        res.send(newPlaylist[0])
     },
     getNewPlaylist: (req, res) => {
         res.send(newPlaylist)
@@ -187,10 +201,26 @@ module.exports = {
     // create: (req, res) => {
 
     // },
-    // update: (req, res) => {
+    updateNewPlaylist: (req, res) => {
+        newPlaylist.shift();
+        res.send(newPlaylist);
+    },
+    updateOldPlaylist: (req, res) => {
+        let { id, title, artist, album, time } = req.body
 
-    // },
-    // delete: (req, res) => {
+        let songToAdd = {
+            id,
+            title,
+            artist,
+            album,
+            time
+        }
 
-    // },
+        playlistOne.push(songToAdd)
+        res.send(playlistOne);
+    },
+    deleteSong: (req, res) => {
+        newPlaylist.shift();
+        res.send(newPlaylist);
+    },
 };

@@ -5,7 +5,8 @@ class PlaylistButton extends Component {
         return (
             <button
                 className="playlist-buttons"
-                onClick={() => this.props.updateOldSongsList(this.props.playlistTitle)}>
+                onClick={() => this.props.addOldSongsList(this.props.playlistTitle)}
+            >
                 {this.props.playlistTitle}
             </button>
         )

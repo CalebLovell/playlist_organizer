@@ -2,8 +2,12 @@ import React, { Component } from 'react'
 
 class AddButton extends Component {
     render() {
+        console.log(this.props.newSongsList[0])
         return (
-            <button className="top-buttons" onClick={() => this.props.addSong()}>
+            <button
+                className="top-buttons"
+                onClick={() => this.props.addSong(this.props.newSongsList[0])}
+            >
                 &nbsp;&nbsp;Add&nbsp;&nbsp;
             </button>
         )

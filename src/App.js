@@ -26,20 +26,45 @@ class App extends Component {
     };
   };
 
-  addSong = () => {
-    this.setState({
-      oldSongsList: [{
-        id: 1,
-        title: 'Sucker',
-        artist: 'Jonas Brothers',
-        album: 'Sucker',
-        time: '3:01',
-      }, ...this.state.oldSongsList],
-      newSongsList: this.state.newSongsList.shift()
-    });
+  addSong = (song) => {
+    axios
+      .put(`/api/newPlaylist/`)
+      .then(res => {
+        this.setState({
+          newSongsList: res.data,
+        })
+      })
+      .catch(err => {
+        console.log(`there was an error: ${err}`)
+      })
+    if (this.state.newSongsList[0]) {
+      axios
+        .put(`/api/oldPlaylist/`, song)
+        .then(res => {
+          this.setState({
+            oldSongsList: res.data,
+          })
+        })
+        .catch(err => {
+          console.log(`there was an error: ${err}`)
+        })
+    }
   };
 
-  updateOldSongsList = (playlistName) => {
+  deleteSong = (song) => {
+    axios
+      .delete(`/api/newPlaylist/`, song)
+      .then(res => {
+        this.setState({
+          newSongsList: res.data,
+        })
+      })
+      .catch(err => {
+        console.log(`there was an error: ${err}`)
+      })
+  }
+
+  addOldSongsList = (playlistName) => {
     axios
       .get(`/api/oldPlaylist/${playlistName}`)
       .then(res => {
@@ -79,30 +104,30 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <div className="controls">
-          <div className="control-buttons-div">
-            <AddButton addSong={this.addSong} />
-            <DeleteButton />
-          </div>
-        </div>
+        {/* <div className="playlist-titles-div">
+          <PlaylistTitles />
+        </div> */}
         <div className="song">
           <Song />
         </div>
-        <div className="playlist-titles-div">
-          <PlaylistTitles />
-        </div>
-        <div className="playlists">
+        <main className="playlists">
           <NewPlaylist newSongsList={this.state.newSongsList} />
           <OldPlaylist oldSongsList={this.state.oldSongsList} />
-        </div>
-        <div className="playlist-changer">
-          <div className="playlist-buttons-div">
-            <PlaylistButton playlistTitle={playlistOne} updateOldSongsList={this.updateOldSongsList} />
-            <PlaylistButton playlistTitle={playlistTwo} updateOldSongsList={this.updateOldSongsList} />
-            <PlaylistButton playlistTitle={playlistThree} updateOldSongsList={this.updateOldSongsList} />
-            <PlaylistButton playlistTitle={playlistFour} updateOldSongsList={this.updateOldSongsList} />
+        </main>
+        <footer className="controls">
+          <div className="control-buttons-div">
+            <AddButton addSong={this.addSong} newSongsList={this.state.newSongsList} />
+            <DeleteButton deleteSong={this.deleteSong} />
           </div>
-        </div>
+        </footer>
+        {/* <div className="playlist-changer">
+          <div className="playlist-buttons-div">
+            <PlaylistButton playlistTitle={playlistOne} addOldSongsList={this.addOldSongsList} />
+            <PlaylistButton playlistTitle={playlistTwo} addOldSongsList={this.addOldSongsList} />
+            <PlaylistButton playlistTitle={playlistThree} addOldSongsList={this.addOldSongsList} />
+            <PlaylistButton playlistTitle={playlistFour} addOldSongsList={this.addOldSongsList} />
+          </div>
+        </div> */}
       </div>
     );
   };

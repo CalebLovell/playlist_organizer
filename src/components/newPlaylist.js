@@ -5,7 +5,7 @@ class NewPlaylist extends Component {
     render() {
         let mappedSongs = this.props.newSongsList.map((song, i) => {
             return (
-                <PlaylistSlot key={i} songNumber={song.id} songTitle={song.title}
+                <PlaylistSlot key={i} songIndex={i+1} songTitle={song.title}
                 songArtist={song.artist} songTime={song.time} />
             )
         })
@@ -13,6 +13,7 @@ class NewPlaylist extends Component {
         return (
             <div className="left-container">
                 <div className="new-playlist">
+                    <h1>Today's Top Hits</h1>
                     <div className="table">
                         {mappedSongs}
                     </div>
